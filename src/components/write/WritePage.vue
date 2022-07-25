@@ -7,8 +7,8 @@
       </div>
     </div>
     <BottomButtons>
-      <button type="button" class="btn-save" @click="saveItem">저장</button>
       <button type="button" class="btn-cancel" @click="backToList">취소</button>
+      <button type="button" class="btn-save" @click="saveItem">저장</button>
     </BottomButtons>
   </div>
 </template>
@@ -71,7 +71,8 @@ export default {
       textarea {
         width: 100%;
         height: 50vh;
-        height: calc(100vh - $headerHeight - 77px - 75px - 60px);
+        height: calc(100vh - $headerHeight - 77px - 75px - 100px);
+        height: 50vh;
         border: 1px solid #ddd;
         padding: 1em calc(1em - 1px);
         resize: none;
