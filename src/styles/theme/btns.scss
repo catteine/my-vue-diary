@@ -1,0 +1,13 @@
+@import "../variables";
+
+@mixin btnStyle {
+  flex-shrink: 0;
+  width: calc(50% - 10px);
+  font-size: 1.125em;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 1em;
+  background-color: $keyColor;
+  padding: 0.5em;
+  margin: 0 5px;
+}
