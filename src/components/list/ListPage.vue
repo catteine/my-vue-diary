@@ -1,11 +1,12 @@
 <template>
   <div class="list-wrapper">
     <div class="list-body">
-      <ul>
+      <ul v-if="list.length > 0">
         <li v-for="(item, index) in list" :key="index">
           <ListItem :thisItem="item" @selectItem="diaryView(item)" />
         </li>
       </ul>
+      <div v-else class="list-none">목록 없음</div>
     </div>
     <BottomButtons>
       <button type="button" class="btn-write" @click="diaryWrite">글쓰기</button>
@@ -30,17 +31,20 @@ export default {
   },
   methods: {
     diaryView(el) {
-      this.$emit('setModeView', el);
+      this.$router.push({
+        name: 'view',
+        params: el,
+      });
     },
     diaryWrite() {
-      this.$emit('setModeWrite', 'write');
+      this.$router.push('/write');
+    },
+    sortList(list) {
+      return list.reverse();
     }
   },
-  beforeMount() {
-    this.list = JSON.parse(localStorage.getItem('diaryData')).reverse();
-  },
   mounted() {
-
+    this.list = this.sortList(this.$store.state.listItems);
   },
 }
 </script>
@@ -55,6 +59,12 @@ export default {
       border-width: 0 0 1px;
       padding: 0 1.5em;
     }
+  }
+  .list-none {
+    display: flex;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

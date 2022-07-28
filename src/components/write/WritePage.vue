@@ -1,9 +1,9 @@
 <template>
   <div class="write-wrapper">
     <div class="write-body">
-      <TopDateInfo :date="dateInfo" />
+      <TopDateInfo :date="itemDate" />
       <div class="write-input">
-        <textarea v-model="diaryText" placeholder="내용을 입력하세요"></textarea>
+        <textarea v-model="itemText" placeholder="내용을 입력하세요"></textarea>
       </div>
     </div>
     <BottomButtons>
@@ -25,8 +25,9 @@ export default {
   },
   data() {
     return {
-      diaryText: "",
-      dateInfo: {},
+      itemIndex: 0,
+      itemText: "",
+      itemDate: {},
     }
   },
   methods: {
@@ -34,29 +35,28 @@ export default {
       const today = new Date(),
       arrayWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
       let info = {
-        date : today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate(),
+        day : today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate(),
         week : arrayWeek[today.getDay()],
         createTime : today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(),
       };
       return info;
     },
     saveItem() {
-      let list = JSON.parse(localStorage.getItem('diaryData')) || [];
-      const thisData = {
-        'date': this.dateInfo,
-        'text': this.diaryText,
-      }
-      list.push(thisData);
-      localStorage.setItem('diaryData', JSON.stringify(list));
-      
+      const item = {
+        index: this.itemIndex,
+        date: this.itemDate,
+        text: this.itemText,
+      };
+      this.$store.commit('saveItem', item);
       this.backToList();
     },
     backToList() {
-      this.$emit('setModeList', 'list');
+      this.$router.push('/list');
     },
   },
   mounted() {
-    this.dateInfo = this.getToday();
+    this.itemIndex = this.$store.state.listItems.length;
+    this.itemDate = this.getToday();
   },
 }
 </script>

@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     getSimpleDate(dateObj) {
-      let result = dateObj.date.split('.');
+      let result = dateObj.day.split('.');
       result = result[1] + "." + result[2] + " " + dateObj.week;
       return result;
     },

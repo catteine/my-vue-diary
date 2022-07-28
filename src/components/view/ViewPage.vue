@@ -1,7 +1,7 @@
 <template>
   <div class="view-wrapper">
     <div class="view-body">
-      <TopDateInfo :date="dateInfo" />
+      <TopDateInfo :date="viewItem.date" />
       <article>
         <div class="inner" v-html="replaceStringWithHTML(viewItem.text)"></div>
       </article>
@@ -22,12 +22,9 @@ export default {
     TopDateInfo,
     BottomButtons,
   },
-  props: {
-    viewItem: Object,
-  },
   data() {
     return {
-      dateInfo: {},
+      viewItem: {},
     }
   },
   methods: {
@@ -37,11 +34,15 @@ export default {
         return str;
     },
     backToList() {
-      this.$emit('setModeList', 'list');
+      this.$router.push('/list');
     },
   },
   beforeMount() {
-    this.dateInfo = this.viewItem.date;
+    if (this.$route.params.text) {
+      this.viewItem = this.$route.params;
+    } else {
+      this.$router.push('/list');
+    }
   },
 }
 </script>
