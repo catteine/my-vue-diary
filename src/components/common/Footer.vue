@@ -37,7 +37,7 @@ footer {
     display: flex;
     justify-content: center;
     button {
-      @include btns.btnStyle;
+      @include btns.btn-style;
     }
   }
 }

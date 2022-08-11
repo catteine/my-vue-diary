@@ -44,7 +44,7 @@ export default {
   .text {
     width: calc(100%  - 80px - 50px - 20px);
     opacity: 0.8;
-    @include textEllipsis;
+    @include text-ellipsis;
   }
   button {
     flex-shrink: 0;
@@ -53,7 +53,7 @@ export default {
     color: #fff;
     font-size: 0.875em;
     border-radius: 1em;
-    background-color: rgba($keyColor, 0.7);
+    background-color: rgba($key-color, 0.7);
     margin-left: 20px;
   }
 }

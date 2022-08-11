@@ -20,7 +20,7 @@ export default {
 <style lang="scss" scoped>
 .date-information {
   text-align: center;
-  color: $keyColor;
+  color: $key-color;
   font-weight: 700;
   padding: 1em;
   .info {

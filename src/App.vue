@@ -37,7 +37,7 @@ export default {
   line-height: 1.5;
 
   main {
-    padding-top: $headerHeight;
+    padding-top: $header-height;
   }
 }
 </style>

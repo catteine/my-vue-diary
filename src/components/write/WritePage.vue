@@ -55,7 +55,7 @@ export default {
     },
   },
   mounted() {
-    this.itemIndex = this.$store.state.listItems.length;
+    this.itemIndex = this.$store.commit('getListLength');
     this.itemDate = this.getToday();
   },
 }
@@ -71,7 +71,7 @@ export default {
       textarea {
         width: 100%;
         height: 50vh;
-        height: calc(100vh - $headerHeight - 77px - 75px - 100px);
+        height: calc(100vh - $header-height - 77px - 75px - 100px);
         height: 50vh;
         border: 1px solid #ddd;
         padding: 1em calc(1em - 1px);
@@ -85,7 +85,7 @@ export default {
       flex-direction: row-reverse;
       justify-content: space-between;
       button {
-        @include btns.btnStyle;
+        @include btns.btn-style;
       }
     }
   }

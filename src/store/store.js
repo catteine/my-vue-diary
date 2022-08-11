@@ -25,6 +25,9 @@ export const store = new Vuex.Store({
       localStorage.setItem('diaryData', JSON.stringify(list));
       state.listItems = storage.fetch();
     },
+    getListLength(state) {
+      return state.listItems.length;
+    }
   },
   getters: {
 
