@@ -47,6 +47,7 @@ export default {
         date: this.itemDate,
         text: this.itemText,
       };
+      console.log(item);
       this.$store.commit('saveItem', item);
       this.backToList();
     },
@@ -55,7 +56,7 @@ export default {
     },
   },
   mounted() {
-    this.itemIndex = this.$store.commit('getListLength');
+    this.itemIndex = this.$store.getters.getListLength;
     this.itemDate = this.getToday();
   },
 }

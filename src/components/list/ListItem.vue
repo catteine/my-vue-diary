@@ -1,6 +1,6 @@
 <template>
   <div class="list-item">
-    <span class="date">{{getSimpleDate(item.date)}}</span>
+    <span class="date">{{getSimpleDate(item.time)}}</span>
     <div class="text" v-html="item.text"></div>
     <button type="button" @click="itemView">읽기</button>
   </div>
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     getSimpleDate(dateObj) {
-      let result = dateObj.day.split('.');
+      let result = dateObj.date.split('-');
       result = result[1] + "." + result[2] + " " + dateObj.week;
       return result;
     },

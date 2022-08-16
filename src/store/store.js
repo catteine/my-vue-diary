@@ -1,16 +1,30 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
 const storage = {
-  fetch() {
-    let arr = [];
-    const data = JSON.parse(localStorage.getItem('diaryData'));
-    if (data) {
-      arr = data;
-    }
-    return arr;
+  async fetch() {
+    let arr = [],
+        data = [];
+    // const data = JSON.parse(localStorage.getItem('diaryData'));
+
+    axios.get('https://diary-a6651.firebaseio.com/MyDiary/tTVdZHohbLfHqXy4xn1Mp8TRYM22.json')
+    .then(function(response) {
+      data = Object.values(response.data);
+
+      if (data.length > 0) {
+        arr = data;
+      }
+
+      console.log(arr);
+  
+      return arr;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
   },
 };
 
@@ -25,11 +39,13 @@ export const store = new Vuex.Store({
       localStorage.setItem('diaryData', JSON.stringify(list));
       state.listItems = storage.fetch();
     },
-    getListLength(state) {
-      return state.listItems.length;
-    }
   },
   getters: {
-
+    getListLength(state) {
+      return state.listItems.length;
+    },
   },
+  actions : {
+    
+  }
 });

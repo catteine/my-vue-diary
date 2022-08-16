@@ -44,7 +44,10 @@ export default {
     }
   },
   mounted() {
-    this.list = this.sortList(this.$store.state.listItems);
+    // this.list = this.sortList(this.$store.state.listItems);
+    this.list = this.$store.state.listItems;
+    console.log(this.$store.state.listItems);
+    // console.log(this.$store.getters.getListLength);
   },
 }
 </script>
