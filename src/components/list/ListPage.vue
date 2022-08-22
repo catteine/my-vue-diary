@@ -1,8 +1,8 @@
 <template>
   <div class="list-wrapper">
     <div class="list-body">
-      <ul v-if="list.length > 0">
-        <li v-for="(item, index) in list" :key="index">
+      <ul v-if="listItems.length > 0">
+        <li v-for="(item, index) in listItems" :key="index">
           <ListItem :thisItem="item" @selectItem="diaryView(item)" />
         </li>
       </ul>
@@ -17,6 +17,8 @@
 <script>
 import ListItem from './ListItem.vue';
 import BottomButtons from '../common/BottomButtons.vue';
+
+import { mapState } from 'vuex';
 
 export default {
   name: 'ListPage',
@@ -43,11 +45,11 @@ export default {
       return list.reverse();
     }
   },
+  computed: {
+    ...mapState(['listItems'])
+  },
   mounted() {
-    // this.list = this.sortList(this.$store.state.listItems);
-    this.list = this.$store.state.listItems;
-    console.log(this.$store.state.listItems);
-    // console.log(this.$store.getters.getListLength);
+    this.$store.dispatch('fetchList');
   },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="date-information">
     <div class="info">
-      <span class="date">{{date.day}}</span>
+      <span class="date">{{date.date}}</span>
       <span class="week">{{date.week}}</span>
     </div>
     <div class="time" v-if="date.createTime">{{date.createTime}}</div>

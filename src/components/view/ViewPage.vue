@@ -1,7 +1,7 @@
 <template>
   <div class="view-wrapper">
     <div class="view-body">
-      <TopDateInfo :date="viewItem.date" />
+      <TopDateInfo :date="viewItem.time" />
       <article>
         <div class="inner" v-html="replaceStringWithHTML(viewItem.text)"></div>
       </article>
