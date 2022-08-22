@@ -18,7 +18,7 @@
 import ListItem from './ListItem.vue';
 import BottomButtons from '../common/BottomButtons.vue';
 
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'ListPage',
@@ -43,13 +43,15 @@ export default {
     },
     sortList(list) {
       return list.reverse();
-    }
+    },
+    ...mapActions(['fetchList'])
   },
   computed: {
     ...mapState(['listItems'])
   },
   mounted() {
-    this.$store.dispatch('fetchList');
+    // this.$store.dispatch('fetchList');
+    this.fetchList();
   },
 }
 </script>
