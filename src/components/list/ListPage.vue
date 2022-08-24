@@ -28,7 +28,6 @@ export default {
   },
   data() {
     return {
-      list: [],
     }
   },
   methods: {
@@ -61,10 +60,16 @@ export default {
   padding-bottom: 75px;
   .list-body {
     position: relative;
+    ul {
+    display: flex;
+    flex-direction: column-reverse;
+    }
     li {
+      width: 100%;
       border: solid #ddd;
       border-width: 0 0 1px;
       padding: 0 1.5em;
+      box-sizing: border-box;
     }
   }
   .list-none {

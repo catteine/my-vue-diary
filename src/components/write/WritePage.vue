@@ -35,20 +35,19 @@ export default {
       const today = new Date(),
       arrayWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
       let info = {
-        day : today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate(),
+        date : today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate(),
         week : arrayWeek[today.getDay()],
         createTime : today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(),
       };
       return info;
     },
-    saveItem() {
+    async saveItem() {
       const item = {
         index: this.itemIndex,
-        date: this.itemDate,
+        time: this.itemDate,
         text: this.itemText,
       };
-      console.log(item);
-      this.$store.commit('saveItem', item);
+      await this.$store.dispatch('saveItem', item);
       this.backToList();
     },
     backToList() {
