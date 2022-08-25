@@ -32,29 +32,32 @@ export default {
 
 <style lang="scss" scoped>
 .list-item {
+  position: relative;
   display: flex;
-  line-height: 3.5em;
+  // line-height: 4em;
+  justify-content: space-between;
   align-items: center;
+  border: 2px solid #ddd;
+  border-radius: 1em;
+  padding: 1em;
   .date {
     flex-shrink: 0;
-    width: 80px;
     font-size: 0.875em;
     font-weight: 700;
   }
   .text {
-    width: calc(100%  - 80px - 50px - 20px);
+    width: calc(100%  - 80px);
     opacity: 0.8;
     @include text-ellipsis;
   }
   button {
-    flex-shrink: 0;
-    width: 50px;
-    height: 2.5em;
-    color: #fff;
-    font-size: 0.875em;
-    border-radius: 1em;
-    background-color: rgba($key-color, 0.7);
-    margin-left: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom :0;
+    text-align: right;
+    opacity: 0;
   }
 }
 </style>

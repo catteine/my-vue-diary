@@ -9,7 +9,7 @@
       <div v-else class="list-none">목록 없음</div>
     </div>
     <BottomButtons>
-      <button type="button" class="btn-write" @click="diaryWrite">글쓰기</button>
+      <button type="button" class="btn-write" @click="diaryWrite"><font-awesome-icon icon="fa-solid fa-pen-to-square" /> 글쓰기</button>
     </BottomButtons>
   </div>
 </template>
@@ -59,15 +59,15 @@ export default {
   padding-bottom: 75px;
   .list-body {
     position: relative;
+    padding-top: 1em;
     ul {
-    display: flex;
-    flex-direction: column-reverse;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.5em 0;
     }
     li {
       width: 100%;
-      border: solid #ddd;
-      border-width: 0 0 1px;
-      padding: 0 1.5em;
+      padding: 0 1em;
       box-sizing: border-box;
     }
   }
