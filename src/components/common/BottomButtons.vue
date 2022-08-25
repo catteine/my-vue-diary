@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use '@/styles/theme/btns' as btns;
+@use '@/styles/themes/btns' as btns;
 
 .bottom-buttons {
   position: fixed;

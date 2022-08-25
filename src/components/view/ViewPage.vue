@@ -8,6 +8,7 @@
     </div>
     <BottomButtons>
       <button type="button" class="btn-write" @click="backToList">목록으로</button>
+      <button type="button" class="btn-modify" @click="diaryModify(viewItem)">수정</button>
     </BottomButtons>
   </div>
 </template>
@@ -35,6 +36,12 @@ export default {
     },
     backToList() {
       this.$router.push('/list');
+    },
+    diaryModify(el) {
+      this.$router.push({
+        name: 'modify',
+        params: el,
+      });
     },
   },
   beforeMount() {

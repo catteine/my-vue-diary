@@ -1,9 +1,9 @@
 <template>
   <div class="write-wrapper">
     <div class="write-body">
-      <TopDateInfo :date="itemDate" />
+      <TopDateInfo :date="targetItem.time" />
       <div class="write-input">
-        <textarea v-model="itemText" placeholder="내용을 입력하세요"></textarea>
+        <textarea v-model="targetItem.text" placeholder="내용을 입력하세요"></textarea>
       </div>
     </div>
     <BottomButtons>
@@ -20,46 +20,42 @@ import BottomButtons from '../common/BottomButtons.vue';
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'WritePage',
+  name: 'ModifyPage',
   components: {
     TopDateInfo,
     BottomButtons,
   },
   data() {
     return {
-      itemIndex: 0,
-      itemText: "",
-      itemDate: {},
+      targetItem: {},
     }
   },
   methods: {
-    ...mapActions(['saveItem']),
-    getToday() {
-      const today = new Date(),
-      arrayWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-      let info = {
-        date : today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate(),
-        week : arrayWeek[today.getDay()],
-        createTime : today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(),
-      };
-      return info;
-    },
+    ...mapActions(['modifyItem']),
     async saveAction() {
       const item = {
-        index: this.itemIndex,
-        time: this.itemDate,
-        text: this.itemText,
+        index: this.targetItem.index,
+        time: this.targetItem.time,
+        text: this.targetItem.text,
       };
-      await this.saveItem(item);
+      await this.modifyItem({
+        key: this.targetItem.key,
+        item
+      });
       this.backToList();
     },
     backToList() {
       this.$router.push('/list');
     },
   },
+  beforeMount() {
+    if (this.$route.params.text) {
+      this.targetItem = this.$route.params;
+    }
+  },
   mounted() {
-    this.itemIndex = this.$store.getters.getListLength;
-    this.itemDate = this.getToday();
+    // this.itemIndex = this.$store.getters.getListLength;
+    // this.itemDate = this.getToday();
   },
 }
 </script>

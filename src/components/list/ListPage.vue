@@ -2,7 +2,7 @@
   <div class="list-wrapper">
     <div class="list-body">
       <ul v-if="listItems.length > 0">
-        <li v-for="(item, index) in listItems" :key="index">
+        <li v-for="item in listItems" :key="item.key">
           <ListItem :thisItem="item" @selectItem="diaryView(item)" />
         </li>
       </ul>
@@ -31,6 +31,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['fetchList']),
     diaryView(el) {
       this.$router.push({
         name: 'view',
@@ -43,13 +44,11 @@ export default {
     sortList(list) {
       return list.reverse();
     },
-    ...mapActions(['fetchList'])
   },
   computed: {
-    ...mapState(['listItems'])
+    ...mapState(['listItems']),
   },
   mounted() {
-    // this.$store.dispatch('fetchList');
     this.fetchList();
   },
 }
