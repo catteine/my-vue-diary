@@ -19,6 +19,8 @@ export default {
 
 <style lang="scss" scoped>
 .date-information {
+  display: flex;
+  justify-content: space-between;
   text-align: center;
   color: $key-color;
   font-weight: 700;
@@ -33,6 +35,7 @@ export default {
   .time {
     font-size: 0.875em;
     font-weight: 400;
+    opacity: 0.8;
   }
 }
 </style>

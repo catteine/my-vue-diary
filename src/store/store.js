@@ -4,30 +4,6 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
-// const storage = {
-//   async fetch() {
-//     let arr = [],
-//         data = [];
-//     // const data = JSON.parse(localStorage.getItem('diaryData'));
-
-//     await axios.get('https://diary-a6651.firebaseio.com/MyDiary/tTVdZHohbLfHqXy4xn1Mp8TRYM22.json')
-//     .then(function(response) {
-//       data = Object.values(response.data);
-
-//       if (data.length > 0) {
-//         arr = data;
-//       }
-
-//       console.log(arr);
-  
-//       return arr;
-//     })
-//     .catch(function(error) {
-//       console.log(error);
-//     });
-//   },
-// };
-
 export const store = new Vuex.Store({
   state: {
     listItems: []
@@ -37,7 +13,6 @@ export const store = new Vuex.Store({
       state.listItems.push(item);
     },
     updateItem(state, itemObj) {
-      console.log('up');
       state.listItems = state.listItems.map(el => {
         if (el.key === itemObj.key) {
           const obj = {
@@ -49,6 +24,9 @@ export const store = new Vuex.Store({
           return el;
         }
       });
+    },
+    removeItem(state, itemObj) {
+      state.listItems = state.listItems.filter(el => el.key != itemObj.key);
     },
     setList(state, fetchedData) {
       state.listItems = fetchedData;
@@ -92,6 +70,14 @@ export const store = new Vuex.Store({
       try {
         await axios.patch(`https://diary-a6651.firebaseio.com/MyDiary/data/${itemObj.key}.json`, itemObj.item);
         context.commit('updateItem', itemObj);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async removeItem (context, itemObj) {
+      try {
+        await axios.delete(`https://diary-a6651.firebaseio.com/MyDiary/data/${itemObj.key}.json`);
+        context.commit('removeItem', itemObj);
       } catch (err) {
         console.log(err);
       }

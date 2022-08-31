@@ -7,6 +7,7 @@
       </article>
     </div>
     <BottomButtons>
+      <button type="button" class="btn-delete" @click="removeAction(viewItem)">삭제</button>
       <button type="button" class="btn-write" @click="backToList">목록으로</button>
       <button type="button" class="btn-modify" @click="diaryModify(viewItem)">수정</button>
     </BottomButtons>
@@ -16,6 +17,8 @@
 <script>
 import TopDateInfo from '../common/TopDateInfo.vue';
 import BottomButtons from '../common/BottomButtons.vue';
+
+import { mapActions } from 'vuex';
 
 export default {
   name: 'ViewPage',
@@ -29,6 +32,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['removeItem']),
     replaceStringWithHTML(dText) {
         var str = dText.split(' ').join('&nbsp;');
         str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
@@ -42,6 +46,12 @@ export default {
         name: 'modify',
         params: el,
       });
+    },
+    async removeAction(el) {
+      if (confirm("삭제하시겠습니까?")) {
+        await this.removeItem(el);
+        this.backToList();
+      }
     },
   },
   beforeMount() {
