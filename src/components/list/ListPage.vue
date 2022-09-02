@@ -94,10 +94,10 @@ export default {
 .loader {
   display: block;
   position: relative;
-  width: 25%;
+  width: 90px;
+  height: 90px;
   background-image: conic-gradient($key-color 0, rgba(0,0,0,0) 60%);
   border-radius: 50%;
-  aspect-ratio: 1/1;
   margin: 10em auto;
   animation: loader 0.5s linear infinite;
   &::after {
